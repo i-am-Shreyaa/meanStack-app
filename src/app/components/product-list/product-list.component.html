@@ -1,0 +1,42 @@
+<h2>Product List</h2>
+
+<p>Total products: {{ products.length }}</p>
+
+@for (product of products; track product._id) {
+  <div>
+    <h3>{{ product.name }}</h3>
+    <p>Price: {{ product.price }}</p>
+    <p>Category: {{ product.category }}</p>
+    <hr>
+  </div>
+}
+<hr>
+
+<button
+  (click)="currentPage = currentPage - 1; loadProducts()"
+  [disabled]="currentPage === 1">
+  Previous
+</button>
+
+<span>
+  Page {{ currentPage }} of {{ totalPages }}
+</span>
+
+<button
+  (click)="currentPage = currentPage + 1; loadProducts()"
+  [disabled]="currentPage === totalPages">
+  Next
+</button>
+
+<h2>Product List</h2>
+
+<input
+  type="text"
+  [(ngModel)]="searchText"
+  placeholder="Search products">
+
+<button (click)="searchProducts()">
+  Search
+</button>
+
+<p>Total products: {{ products.length }}</p>
